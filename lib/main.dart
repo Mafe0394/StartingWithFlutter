@@ -19,10 +19,12 @@ class MyApp extends StatelessWidget {
               onPressed: onPressed, 
               child: Text('Answer 1')),
             ElevatedButton(
-              onPressed: onPressed, 
+              onPressed: ()=>print('Answer 2 chosen!'), 
               child: Text('Answer 2')),
             ElevatedButton(
-              onPressed: onPressed, 
+              onPressed: (){
+                print('Answer 3 chosen!');
+              }, 
               child: Text('Answer 3')),
           ],
         ),
@@ -30,7 +32,7 @@ class MyApp extends StatelessWidget {
     );
   }
   void onPressed() {
-    print('Answer chosen!')
+    print('Answer chosen!');
   }
 }
 
