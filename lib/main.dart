@@ -3,13 +3,24 @@ import 'package:flutter/material.dart';
 //First function Dart execute
 void main() => runApp(MyApp());
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return MyAppState();
+  }
+  
+}
+
+class MyAppState extends State<MyApp>{
   var indexQuestion=0;
   
   void onPressed() {
-    print('Answer 1 chosen!');
-    indexQuestion++;
-    print(indexQuestion);
+    setState(() {
+      indexQuestion++;
+      print(indexQuestion);
+    });
+    print('Answer 1 chosen!');    
+    
   }
 
   @override
