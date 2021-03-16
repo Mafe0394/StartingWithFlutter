@@ -6,18 +6,18 @@ void main() => runApp(MyApp());
 class MyApp extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return MyAppState();
+    return _MyAppState();
   }
   
 }
 
-class MyAppState extends State<MyApp>{
-  var indexQuestion=0;
+class _MyAppState extends State<MyApp>{
+  int _indexQuestion=0;
   
   void onPressed() {
     setState(() {
-      indexQuestion++;
-      print(indexQuestion);
+      _indexQuestion++;
+      print(_indexQuestion);
     });
     print('Answer 1 chosen!');    
     
@@ -38,7 +38,7 @@ class MyAppState extends State<MyApp>{
         ),
         body: Column(
           children: [
-            Text(question[indexQuestion]),
+            Text(question[_indexQuestion]),
             ElevatedButton(
               onPressed: onPressed, 
               child: Text('Answer 1')),
