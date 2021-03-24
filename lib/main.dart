@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_complete_guide/answer.dart';
 import 'question.dart';
 
 //First function Dart execute
@@ -40,17 +41,16 @@ class _MyAppState extends State<MyApp>{
         body: Column(
           children: [
             Question(question[_indexQuestion]),
-            ElevatedButton(
-              onPressed: onPressed, 
-              child: Text('Answer 1')),
-            ElevatedButton(
-              onPressed: ()=>print('Answer 2 chosen!'), 
-              child: Text('Answer 2')),
-            ElevatedButton(
-              onPressed: (){
-                print('Answer 3 chosen!');
-              }, 
-              child: Text('Answer 3')),
+            Answer(
+              text: 'Answer 1',
+              function: onPressed,
+              ),
+            Answer(text: 'Answer 2',
+            function: (){},
+            ),
+            Answer(text: 'Answer 3',
+            function: (){},
+            ),
           ],
         ),
       ),
