@@ -14,20 +14,8 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp>{
-  int _indexQuestion=0;
-  
-  void onPressed() {
-    setState(() {
-      _indexQuestion++;
-      print(_indexQuestion);
-    });
-    print('Answer 1 chosen!');    
-    
-  }
 
-  @override
-  Widget build(BuildContext context) {
-    var question = [
+  final question = const[
       {
         'questionText':'What\'s a cat?',
         'answer':['A mean thing', 'An evil thing','A bird']
@@ -41,20 +29,35 @@ class _MyAppState extends State<MyApp>{
         'answer':['A feather thing', 'A chatty thing']
       }
      ];
+  int _indexQuestion=0;
+  
+  void onPressed() {
+      setState(() {
+      _indexQuestion++;
+      print(_indexQuestion);
+      });
+    
+   
+    
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    
 
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
           title: Text('Perros y gatos'),
         ),
-        body: Column(
+        body: _indexQuestion<question.length ? Column(
           children: [
             Question(question[_indexQuestion]['questionText']),
             ...(question[_indexQuestion]['answer'] as List<String>).map((answer) {
               return Answer(text: answer, function: onPressed);
             }).toList()
           ],
-        ),
+        ) : Center(child: Text('There\'re no more questions'),),
       ),
     );
   }
