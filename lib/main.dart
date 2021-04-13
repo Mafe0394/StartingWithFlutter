@@ -17,7 +17,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   final _questions = const [
     {
-      '_Text': 'What\'s a cat?',
+      'questionText': 'What\'s a cat?',
       'answer': ['A mean thing', 'An evil thing', 'A bird']
     },
     {
