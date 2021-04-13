@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_complete_guide/answer.dart';
+import 'package:flutter_complete_guide/result.dart';
 import 'question.dart';
+import './quiz.dart';
 
 //First function Dart execute
 void main() => runApp(MyApp());
@@ -10,61 +12,46 @@ class MyApp extends StatefulWidget {
   State<StatefulWidget> createState() {
     return _MyAppState();
   }
-  
 }
 
-class _MyAppState extends State<MyApp>{
+class _MyAppState extends State<MyApp> {
+  final _questions = const [
+    {
+      '_Text': 'What\'s a cat?',
+      'answer': ['A mean thing', 'An evil thing', 'A bird']
+    },
+    {
+      'questionText': 'What\'s a dog?',
+      'answer': ['A Fluffy thing', 'A pretty thing', 'A bird', 'Love with fur']
+    },
+    {
+      'questionText': 'What\'s a Parrot?',
+      'answer': ['A feather thing', 'A chatty thing']
+    }
+  ];
+  int _indexQuestion = 0;
 
-  final question = const[
-      {
-        'questionText':'What\'s a cat?',
-        'answer':['A mean thing', 'An evil thing','A bird']
-      },
-      {
-        'questionText':'What\'s a dog?',
-        'answer':['A Fluffy thing', 'A pretty thing','A bird','Love with fur']
-      },
-      {
-        'questionText':'What\'s a Parrot?',
-        'answer':['A feather thing', 'A chatty thing']
-      }
-     ];
-  int _indexQuestion=0;
-  
   void onPressed() {
-      setState(() {
+    setState(() {
       _indexQuestion++;
       print(_indexQuestion);
-      });
-    
-   
-    
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    
-
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
           title: Text('Perros y gatos'),
         ),
-        body: _indexQuestion<question.length ? Column(
-          children: [
-            Question(question[_indexQuestion]['questionText']),
-            ...(question[_indexQuestion]['answer'] as List<String>).map((answer) {
-              return Answer(text: answer, function: onPressed);
-            }).toList()
-          ],
-        ) : Center(child: Text('There\'re no more questions'),),
+        body: _indexQuestion < _questions.length
+            ? Quiz(_questions, onPressed, _indexQuestion)
+            : Result(),
       ),
     );
   }
-  
 }
-
-
 
 class Ejemplo {
   //Properties
