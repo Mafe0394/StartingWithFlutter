@@ -18,20 +18,35 @@ class _MyAppState extends State<MyApp> {
   final _questions = const [
     {
       'questionText': 'What\'s a cat?',
-      'answer': ['A mean thing', 'An evil thing', 'A bird']
+      'answer': [
+        {'text': 'A mean thing', 'score': 5},
+        {'text': 'An evil thing', 'score': 10},
+        {'text': 'A bird', 'score': 0}
+      ]
     },
     {
       'questionText': 'What\'s a dog?',
-      'answer': ['A Fluffy thing', 'A pretty thing', 'A bird', 'Love with fur']
+      'answer': [
+        {'text': 'A Fluffy thing', 'score': 2},
+        {'text': 'A pretty thing', 'score': 4},
+        {'text': 'A bird', 'score': 0},
+        {'text': 'Love with fur', 'score': 10}
+      ]
     },
     {
       'questionText': 'What\'s a Parrot?',
-      'answer': ['A feather thing', 'A chatty thing']
+      'answer': [
+        {'text': 'A feather thing', 'score': 5},
+        {'text': 'A chatty thing', 'score': 10}
+      ]
     }
   ];
   int _indexQuestion = 0;
+  int _totalScore = 0;
 
-  void onPressed() {
+  void onPressed(int score) {
+
+    _totalScore+=score;
     setState(() {
       _indexQuestion++;
       print(_indexQuestion);
@@ -47,7 +62,7 @@ class _MyAppState extends State<MyApp> {
         ),
         body: _indexQuestion < _questions.length
             ? Quiz(_questions, onPressed, _indexQuestion)
-            : Result(),
+            : Result(_totalScore),
       ),
     );
   }
