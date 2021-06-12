@@ -1,30 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_complete_guide/answer.dart';
 
 class Result extends StatelessWidget {
   final int resultScore;
+  final Function function;
 
-  Result(this.resultScore);
+  Result({@required this.resultScore, @required this.function});
 
-  String get resultPhrase{
+  String get resultPhrase {
     String resultText;
-    if (resultScore<8){
-      resultText='Go to pre-school again';
-    }else if(resultScore<15){
-      resultText='Meh!';
-    }else{
-      resultText='You are awesome';
+    if (resultScore < 8) {
+      resultText = 'Go to pre-school again';
+    } else if (resultScore < 15) {
+      resultText = 'Meh!';
+    } else {
+      resultText = 'You are awesome';
     }
     return resultText;
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text(resultPhrase,
-          style: TextStyle(
-            fontSize: 36,
-            fontWeight: FontWeight.bold,
-          )),
+      child: Column(
+        children: [
+          Text(resultPhrase,
+              style: TextStyle(
+                fontSize: 36,
+                fontWeight: FontWeight.bold,
+              )),
+          Answer(text: "Reset", function: function)
+        ],
+      ),
     );
   }
 }
